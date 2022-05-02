@@ -55,13 +55,13 @@ export default defineComponent({
 			status.name = content;
 		};
 
-		// return {
-		// 	age,
-		// 	count,
-		// 	status,
-		// 	updateObj,
-		// 	fn,
-		// };
+		return {
+			age,
+			count,
+			status,
+			updateObj,
+			fn,
+		};
 	},
 });
 </script>
