@@ -1,10 +1,7 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
   <div>我是火狐</div>
-  <div class="box">
-    {{ age }}
-  </div>
-  <hello-world></hello-world>
+  <div class="box"></div>
 </template>
 
 <script lang="ts">
@@ -15,10 +12,6 @@ export default defineComponent({
   name: "App",
   components: {
     HelloWorld,
-  },
-  setup(props) {
-    const age: number = ref(2222);
-    return age;
   },
 });
 </script>

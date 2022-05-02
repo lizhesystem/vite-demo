@@ -1,13 +1,11 @@
 <template>
-$END$
+  <div class=""></div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
-name: "child"
-}
+  name: "child",
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
