@@ -1,70 +1,67 @@
 <template>
-  <!-- <h1>{{ count }}</h1>
-  <button @click="update">更新</button> -->
-
   <div>
-    <ul>
+    <ul class="bg-slate-400 mb-5">
       <li>{{ status.name }}</li>
       <li>{{ status.wife.age }}</li>
       <li>{{ status.wife.name }}</li>
     </ul>
-    <button @click="updateObj">更新</button>
-    <button @click="fn('1')">更新111</button>
+    <el-button @click="updateObj">更新</el-button>
+    <el-button @click="fn('1')">更新111</el-button>
   </div>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent, reactive } from "vue";
+import { ref, defineComponent, reactive } from 'vue'
 
 export default defineComponent({
-  name: "HelloWorld",
+  name: 'HelloWorld',
   props: {
     msg: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
 
   setup: (props, { attrs, emit, slots }) => {
-    const count = ref(0);
-    const age = ref(0);
+    const count = ref(0)
+    const age = ref(0)
     const status = reactive({
-      name: "lizhe",
+      name: 'lizhe',
       age: 20,
       wife: {
-        name: "xj",
-        age: 18,
-      },
-    });
+        name: 'xj',
+        age: 18
+      }
+    })
 
     const updateObj = () => {
-      status.age++;
-      status.wife.name = "meinv";
-    };
+      status.age++
+      status.wife.name = 'meinv'
+    }
 
     function update() {
-      count.value = count.value + 1;
+      count.value = count.value + 1
     }
 
     const fn = (content: string) => {
-      count.value += 1;
+      count.value += 1
       if (count.value % 2 === 0) {
-        content = "QQ";
+        content = 'QQ'
       } else {
-        content = "VV";
+        content = 'VV'
       }
-      status.name = content;
-    };
+      status.name = content
+    }
 
     return {
       age,
       count,
       status,
       updateObj,
-      fn,
-    };
-  },
-});
+      fn
+    }
+  }
+})
 </script>
 
 <style scoped>

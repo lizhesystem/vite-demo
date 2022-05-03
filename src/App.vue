@@ -1,21 +1,32 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
-  <div>我是火狐</div>
-  <child/>
+  <div class="p-2">
+    <hello-world msg="aaa"> </hello-world>
+    <my-child @fn="getFn"></my-child>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import Child from "./components/child.vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import { defineComponent, ref } from 'vue'
+import HelloWorld from './components/HelloWorld.vue'
+import myChild from './components/myChild.vue'
 
 export default defineComponent({
-  name: "App",
+  name: 'App',
   components: {
     HelloWorld,
-    Child,
+    myChild
   },
-});
+  setup() {
+    const name = ref('1')
+    function getFn(content: string) {
+      name.value = content + name.value
+    }
+    return {
+      getFn,
+      name
+    }
+  }
+})
 </script>
 
 <style>
@@ -24,5 +35,6 @@ export default defineComponent({
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  background-color: #fff;
 }
 </style>
