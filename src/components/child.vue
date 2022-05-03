@@ -1,5 +1,6 @@
 <template>
-  <div class=""></div>
+<div>我是SON</div>
+  
 </template>
 
 <script lang="ts">
