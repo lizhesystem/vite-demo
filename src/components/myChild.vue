@@ -1,15 +1,19 @@
 <template>
-  <div class="cls"></div>
   <button
     class="mt-2 rounded-md bg-fuchsia-300 public-border p-2 h-10 flex items-center justify-center hover:border-cyan-100"
     @click="sonUpdate"
   >
     <span>子组件的button</span>
   </button>
+
+  <el-button :icon="Search" type="primary" @click="getDate"
+    >获取接口数据</el-button
+  >
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
+import { Search } from '@element-plus/icons-vue'
 
 export default defineComponent({
   name: 'myChild',
@@ -20,8 +24,12 @@ export default defineComponent({
     function sonUpdate() {
       emit('fn', '++')
     }
+
+    const getDate = () => {}
     return {
-      sonUpdate
+      sonUpdate,
+      getDate,
+      Search
     }
   }
 })
