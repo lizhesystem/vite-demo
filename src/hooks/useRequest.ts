@@ -12,6 +12,7 @@ export default function useRequest<T>(url: string) {
     .then((response) => {
       loading.value = false
       result.value = response.data
+      console.log('执行了！')
     })
     .catch((error) => {
       loading.value = false
