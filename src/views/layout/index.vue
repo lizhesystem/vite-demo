@@ -1,12 +1,7 @@
 <template>
   <div>
     <el-menu mode="horizontal" router :default-active="activeIndex">
-      <el-menu-item
-        v-for="item in menus"
-        :index="item.id"
-        :key="item.id"
-        :route="item.path"
-      >
+      <el-menu-item v-for="item in menus" :index="item.id" :key="item.id" :route="item.path">
         {{ item.name }}
       </el-menu-item>
     </el-menu>
@@ -29,9 +24,10 @@ export default defineComponent({
     const menus: menus[] = [
       { id: 'home', path: '/home', name: 'home' },
       { id: 'setting', path: '/setting', name: 'setting' },
-      { id: 'other', path: '/other', name: 'other' }
+      { id: 'other', path: '/other', name: 'other' },
+      { id: 'debounce', path: '/debounce', name: 'debounce' }
     ]
-    const activeIndex: Ref<RouteRecordName | null | undefined> = ref(null)
+    const activeIndex: Ref<any> = ref(null)
     const route = useRoute()
     watch(
       () => route.name,

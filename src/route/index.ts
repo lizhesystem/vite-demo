@@ -16,6 +16,11 @@ const routes = [
     path: '/other',
     name: 'other',
     component: () => import('../views/other.vue')
+  },
+  {
+    path: '/debounce',
+    name: 'debounce',
+    component: () => import('../views/debounce.vue')
   }
 ]
 
