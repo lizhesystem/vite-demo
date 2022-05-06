@@ -1,11 +1,6 @@
 <template>
   <div>
-    <el-menu
-      mode="horizontal"
-      router
-      :default-active="activeIndex"
-      @select="handleSelect"
-    >
+    <el-menu mode="horizontal" router :default-active="activeIndex">
       <el-menu-item
         v-for="item in menus"
         :index="item.id"
@@ -21,7 +16,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, Ref, ref, watch } from 'vue'
+import { RouteRecordName, useRoute } from 'vue-router'
 interface menus {
   id: string
   path: string
@@ -31,18 +27,22 @@ interface menus {
 export default defineComponent({
   setup() {
     const menus: menus[] = [
-      { id: '1', path: '/home', name: 'home' },
-      { id: '2', path: '/setting', name: 'setting' },
-      { id: '3', path: '/other', name: 'other' }
+      { id: 'home', path: '/home', name: 'home' },
+      { id: 'setting', path: '/setting', name: 'setting' },
+      { id: 'other', path: '/other', name: 'other' }
     ]
-    const activeIndex = ref('1')
-    const handleSelect = (key: string, keyPath: string[]) => {
-      activeIndex.value = key
-    }
+    const activeIndex: Ref<RouteRecordName | null | undefined> = ref(null)
+    const route = useRoute()
+    watch(
+      () => route.name,
+      (val) => {
+        activeIndex.value = val
+      }
+    )
+
     return {
       menus,
-      activeIndex,
-      handleSelect
+      activeIndex
     }
   }
 })
