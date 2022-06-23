@@ -6,7 +6,6 @@
       </el-menu-item>
     </el-menu>
   </div>
-
   <router-view></router-view>
 </template>
 
@@ -25,7 +24,8 @@ export default defineComponent({
       { id: 'home', path: '/home', name: 'home' },
       { id: 'setting', path: '/setting', name: 'setting' },
       { id: 'other', path: '/other', name: 'other' },
-      { id: 'debounce', path: '/debounce', name: 'debounce' }
+      { id: 'debounce', path: '/debounce', name: 'debounce' },
+      { id: 'login', path: '/login', name: 'login' }
     ]
     const activeIndex: Ref<any> = ref(null)
     const route = useRoute()
@@ -43,5 +43,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="stylus" scoped></style>
