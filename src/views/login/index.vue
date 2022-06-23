@@ -1,13 +1,9 @@
 <template>
-<div>123</div>
+	<div>1</div>
 </template>
 
-<script>
-export default {
-	name: "index"
-}
+<script setup lang="ts">
+
 </script>
 
-<style scoped>
-
-</style>
+<style scoped lang="scss"></style>
