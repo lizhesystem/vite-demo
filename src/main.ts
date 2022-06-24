@@ -10,7 +10,7 @@ import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 // vue Router
-import router from './route/router'
+import router from './route/index'
 
 const app = createApp(App)
 app.use(ElementPlus)

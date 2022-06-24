@@ -5,27 +5,27 @@ const routes = [
 	{
 		path: '/home',
 		name: 'home',
-		component: () => import('../views/home.vue')
+		component: () => import('@/views/home.vue')
 	},
 	{
 		path: '/setting',
 		name: 'setting',
-		component: () => import('../views/setting.vue')
+		component: () => import('@/views/setting.vue')
 	},
 	{
 		path: '/other',
 		name: 'other',
-		component: () => import('../views/other.vue')
+		component: () => import('@/views/other.vue')
 	},
 	{
 		path: '/debounce',
 		name: 'debounce',
-		component: () => import('../views/debounce.vue')
+		component: () => import('@/views/debounce.vue')
 	},
 	{
 		path: '/login',
 		name: 'login',
-		component: () => import('../views/login/index.vue')
+		component: () => import('@/views/login/index.vue')
 	}
 ]
 
