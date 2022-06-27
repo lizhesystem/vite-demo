@@ -1,69 +1,145 @@
 <template>
-  <el-form style="margin-top: 20px" ref="formRef" label-width="80px">
-    <el-form-item label="用户名：">
-      <el-input v-model="data[0].username">
+  <el-form
+    style="margin-top: 20px"
+    ref="loginFormRef"
+    :model="loginForm"
+    :rules="loginRules"
+    label-width="80px"
+    size="large"
+  >
+    <el-form-item label="用户名：" prop="username">
+      <el-input v-model="loginForm.username">
         <template #prefix>
-          <el-icon class="el_input__icon">
-            <search />
+          <el-icon class="el-input__icon">
+            <user />
           </el-icon>
         </template>
       </el-input>
     </el-form-item>
 
-    <el-form-item label="密码：">
-      <el-input type="password" v-model="data[0].password" show-password>
+    <el-form-item label="密码：" prop="password">
+      <el-input type="password" v-model="loginForm.password" show-password>
         <template #prefix>
-          <el-icon class="el_input__icon">
-            <search />
+          <el-icon class="el-input__icon">
+            <lock />
           </el-icon>
         </template>
       </el-input>
     </el-form-item>
   </el-form>
-
-  <el-button type="primary" @click="clickParent">子组件提交</el-button>
+  <div class="login-btn">
+    <el-button type="primary" :loading="loading" :icon="UserFilled" round @click="login(loginFormRef)">登录</el-button>
+    <el-button :icon="CircleClose" round type="primary" @click="resetForm(loginFormRef)">重置</el-button>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
+import { reactive, ref } from 'vue'
+import { LoginFrom } from '@/views/login/types'
+import { ElForm, ElMessage } from 'element-plus'
+import { CircleClose, UserFilled } from '@element-plus/icons-vue'
 
-interface LoginForm {
-  username: String
-  password: String
+import router from '@/route/router'
+
+// 表单相关
+type FormInstance = InstanceType<typeof ElForm>
+
+// 定义ref
+const loginFormRef = ref<FormInstance>()
+
+const loginRules = reactive({
+  username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
+  password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
+})
+
+const loginForm = reactive<LoginFrom>({
+  username: 'admin',
+  password: '123456'
+})
+
+const loading = ref<boolean>(false)
+
+const login = (formEL: FormInstance | undefined) => {
+  if (!formEL) return
+  formEL.validate(valid => {
+    if (valid) {
+      loading.value = true
+      console.log('submit')
+      setTimeout(() => {
+        loading.value = false
+        ElMessage.success('登录成功')
+        router.push({ name: 'home' })
+      }, 800)
+    } else {
+      return false
+    }
+  })
 }
 
-// TS专有声明，可以设置默认
-withDefaults(
-  defineProps<{
-    data: LoginForm[]
-  }>(),
-  {
-    data: () => [{ username: "admin", password: "123456" }]
-  }
-)
+// 重置
+const resetForm = (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  formEl.resetFields()
+}
 
-// TS专有声明，子组件向父组件传输数据
+// 接收父组件参数（采用ts专有声明，有默认值）
+
+interface Props{
+	age?:string;
+	address?:string[];
+	obj?:{
+		username:string;
+		password:string;
+	}
+}
+
+const props = withDefaults(defineProps<Props>(), {
+	age: "18",
+	address: () => ["新希望国际", "伏龙小区"],
+	obj: () => {
+		return {
+			username: "admin",
+			password: "123456"
+		};
+	}
+});
+
+// 子组件向父组件传输数据（触发父组件的submitParent方法）
 const emit = defineEmits<{
-  (e: "clickParent", num: number): void
-}>()
+	(e: "submitParent", LoginFrom: LoginFrom): void;
+}>();
 
-/*非ts专有*/
-// const emit= defineEmits(['clickParent'])
+const submitParent = () => {
+	emit("submitParent", loginForm);
+};
 
-const clickParent = () => {
-  emit("clickParent", 2)
-}
-
-const count = ref<number>(2123)
-
+// 子组件数据暴露给父组件
+const count = ref<number>(2111);
 const consoleNumber = (): void => {
-  console.log(5555)
-}
+	console.log("我是子组件打印的数据");
+};
 
 defineExpose({
-  count,
-  consoleNumber
-})
+	count,
+	consoleNumber
+});
+
+
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.el-form-item {
+  margin-bottom: 35px;
+}
+.login-btn {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  white-space: nowrap;
+  .el-button {
+    width: 185px;
+  }
+}
+
+</style>

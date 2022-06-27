@@ -1,37 +1,23 @@
 <template xmlns="">
   <div class="login-container">
     <h3>this is login form!</h3>
-    <login-form ref="loginRef" :data="loginForm" @clickParent="clickParent" />
-    <el-button type="primary" @click="helloClick">登录</el-button>
+    <login-form ref="loginRef" :data="loginForm" @submitParent="submitParent" />
   </div>
 </template>
 
 <script setup lang="ts">
-import LoginForm from "@/views/login/components/LoginForm.vue"
-import { reactive, ref } from "vue"
+import LoginForm from '@/views/login/components/LoginForm.vue'
+import { reactive, ref } from 'vue'
+import { LoginFormExpose, LoginFrom } from '@/views/login/types'
 
-type LoginFormExpose = {
-  count: number
-  consoleNumber: () => void
-}
 const loginRef = ref<LoginFormExpose | null>(null)
 
-const helloClick = () => {
-  console.log(loginRef.value?.count)
-  loginRef.value!.consoleNumber()
-}
+// login
+const submitParent = (LoginForm: LoginFrom) => {}
 
-interface LoginForm {
-  username: String
-  password: String
-}
-
-const loginForm = reactive<LoginForm[]>([
-  {
-    username: "default",
-    password: "123456"
-  }
-])
+const loginForm = reactive<LoginFrom>({
+    username: 'default',
+    password: '123456'})
 
 const clickParent = (number: number) => {
   console.log(number)

@@ -1,27 +1,17 @@
 <template>
-	<layout/>
+  <el-config-provider :locale="zhCn" :button="config" size="large">
+    <router-view></router-view>
+  </el-config-provider>
 </template>
 
-<script lang="ts">
-import {defineComponent} from 'vue'
-import layout from './views/layout/index.vue'
+<script setup lang="ts">
+// 配置element中英文
+import zhCn from "element-plus/lib/locale/lang/zh-cn"
+import { reactive } from "vue"
 
-export default defineComponent({
-	components: {
-		layout
-	},
-	name: 'App',
-	setup() {
-	}
+const config = reactive({
+  autoInsertSpace: false
 })
 </script>
 
-<style>
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
-    background-color: #fff;
-}
-</style>
+<style></style>

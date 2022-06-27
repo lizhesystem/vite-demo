@@ -1,37 +1,42 @@
-import {createRouter, createWebHistory} from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import errorRouter from '@/route/modules/error'
+import homeRouter from '@/route/modules/home'
 
-const routes = [
-	{path: '/', redirect: '/home'},
-	{
-		path: '/home',
-		name: 'home',
-		component: () => import('@/views/home.vue')
-	},
-	{
-		path: '/setting',
-		name: 'setting',
-		component: () => import('@/views/setting.vue')
-	},
-	{
-		path: '/other',
-		name: 'other',
-		component: () => import('@/views/other.vue')
-	},
-	{
-		path: '/debounce',
-		name: 'debounce',
-		component: () => import('@/views/debounce.vue')
-	},
-	{
-		path: '/login',
-		name: 'login',
-		component: () => import('@/views/login/index.vue')
-	}
+const routes: RouteRecordRaw[] = [
+  { path: '/', redirect: '/login' },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
+    meta: {
+      requiresAuth: true,
+      title: '登录页',
+      key: 'login'
+    }
+  },
+  {
+    path: '/layout',
+    name: 'layout',
+    component: () => import(/* webpackChunkName: "layout" */ '@/layout/index.vue'),
+    meta: {
+      requiresAuth: true,
+      title: '登录页',
+      key: 'layout'
+    },
+    redirect: { name: 'home' },
+    children: [...homeRouter]
+  },
+  {
+    // 找不到路由重定向到404页面
+    path: '/:pathMatch(.*)',
+    redirect: { name: '404' }
+  },
+  ...errorRouter
 ]
 
 export default createRouter({
-	history: createWebHistory(),
-	routes,
-	strict: false,
-	scrollBehavior: () => ({left: 0, top: 0})
+  history: createWebHistory(),
+  routes,
+  strict: false,
+  scrollBehavior: () => ({ left: 0, top: 0 })
 })
