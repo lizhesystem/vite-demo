@@ -17,7 +17,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/layout',
     name: 'layout',
-    component: () => import(/* webpackChunkName: "layout" */ '@/layout/index.vue'),
+    component: () => import(/* webpackChunkName: "layout" */ '@/views/layout/index.vue'),
     meta: {
       requiresAuth: true,
       title: '登录页',

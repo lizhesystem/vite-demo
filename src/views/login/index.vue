@@ -1,7 +1,7 @@
 <template xmlns="">
   <div class="login-container">
     <h3>this is login form!</h3>
-    <login-form ref="loginRef" :data="loginForm" @submitParent="submitParent" />
+    <login-form  ref="loginRef" :data="loginForm" @submitParent="submitParent" />
   </div>
 </template>
 
@@ -13,11 +13,14 @@ import { LoginFormExpose, LoginFrom } from '@/views/login/types'
 const loginRef = ref<LoginFormExpose | null>(null)
 
 // login
-const submitParent = (LoginForm: LoginFrom) => {}
+const submitParent = (LoginForm: LoginFrom) => {
+  console.log(LoginForm)
+}
 
 const loginForm = reactive<LoginFrom>({
-    username: 'default',
-    password: '123456'})
+  username: 'default',
+  password: '123456'
+})
 
 const clickParent = (number: number) => {
   console.log(number)

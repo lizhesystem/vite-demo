@@ -31,6 +31,7 @@
     <el-button type="primary" :loading="loading" :icon="UserFilled" round @click="login(loginFormRef)">登录</el-button>
     <el-button :icon="CircleClose" round type="primary" @click="resetForm(loginFormRef)">重置</el-button>
   </div>
+  <!-- <el-button @click="submitParent">触发父组件方法</el-button> -->
 </template>
 
 <script setup lang="ts">
@@ -84,62 +85,64 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
 // 接收父组件参数（采用ts专有声明，有默认值）
 
-interface Props{
-	age?:string;
-	address?:string[];
-	obj?:{
-		username:string;
-		password:string;
-	}
+interface Props {
+  age?: string
+  address?: string[]
+  obj?: {
+    username: string
+    password: string
+  }
 }
 
 const props = withDefaults(defineProps<Props>(), {
-	age: "18",
-	address: () => ["新希望国际", "伏龙小区"],
-	obj: () => {
-		return {
-			username: "admin",
-			password: "123456"
-		};
-	}
-});
+  age: '18',
+  address: () => ['新希望国际', '伏龙小区'],
+  obj: () => {
+    return {
+      username: 'admin',
+      password: '123456'
+    }
+  }
+})
+console.log(props)
+// 接收父组件参数（采用ts专有声明，无默认值）
+
 
 // 子组件向父组件传输数据（触发父组件的submitParent方法）
 const emit = defineEmits<{
-	(e: "submitParent", LoginFrom: LoginFrom): void;
-}>();
-
+  (e: 'submitParent', LoginFrom: LoginFrom): void
+}>()
+// 调用父类方法
 const submitParent = () => {
-	emit("submitParent", loginForm);
-};
+  emit('submitParent', loginForm)
+}
 
-// 子组件数据暴露给父组件
-const count = ref<number>(2111);
+// 子组件向父组件传输数据（触发父组件的submitParent方法）
+const count = ref<number>(2111)
 const consoleNumber = (): void => {
-	console.log("我是子组件打印的数据");
-};
+  console.log('我是子组件打印的数据')
+}
 
 defineExpose({
-	count,
-	consoleNumber
-});
-
-
+  count,
+  consoleNumber
+})
 </script>
 
 <style scoped lang="scss">
 .el-form-item {
   margin-bottom: 35px;
 }
+
 .login-btn {
   margin-top: 40px;
   display: flex;
   justify-content: space-between;
   width: 100%;
   white-space: nowrap;
+
   .el-button {
     width: 185px;
   }
 }
-
 </style>
