@@ -3,6 +3,7 @@ import App from './App.vue'
 // style
 import './styles/css/index.css'
 import './styles/scss/reset.scss'
+import './styles/scss/common.scss'
 
 // element-ui
 import ElementPlus from 'element-plus'
