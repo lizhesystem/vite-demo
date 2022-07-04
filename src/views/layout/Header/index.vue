@@ -16,4 +16,18 @@ const menuStore = MenuStore()
 const isCollapse = computed((): boolean => menuStore.isCollapse)
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.header{
+	border-bottom: 1px solid #f6f6f6;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 15px;
+	height: 55px;
+	.collapse-icon{
+		font-size: 22px;
+		cursor: pointer;
+	}
+}
+</style>

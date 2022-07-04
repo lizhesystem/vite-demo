@@ -1,47 +1,38 @@
 <template>
-  <!--<div>-->
-  <!--  <el-menu mode="horizontal" router :default-active="activeIndex">-->
-  <!--    <el-menu-item v-for="item in menus" :index="item.id" :key="item.id" :route="item.path">-->
-  <!--      {{ item.name }}-->
-  <!--    </el-menu-item>-->
-  <!--  </el-menu>-->
-  <!--</div>-->
   <el-container>
-    <router-view></router-view>
+    <el-aside></el-aside>
+    <el-container>
+      <el-header>
+			<Header></Header>
+			</el-header>
+      <el-main>
+        <router-view v-slot="{ Component }">
+          <transition appear name="fade-transform" mode="out-in">
+            <section class="main-box">
+              <keep-alive v-if="route.meta.keepAlive">
+                <component :is="Component" :key="route.path"></component>
+              </keep-alive>
+              <component v-else :is="Component" :key="route.path"></component>
+            </section>
+          </transition>
+        </router-view>
+      </el-main>
+      <!--底部-->
+      <el-footer>
+				<Footer></Footer>
+      </el-footer>
+    </el-container>
   </el-container>
 </template>
 
 <script setup lang="ts">
-import { Ref, ref, watch } from "vue"
-import { useRoute } from "vue-router"
+import { useRoute } from 'vue-router'
+import Footer from './Footer/index.vue'
+import Header from './Header/index.vue'
 
-interface menus {
-  id: string
-  path: string
-  name: string
-}
-
-const menus: menus[] = [
-  { id: "home", path: "/home", name: "home" },
-  { id: "setting", path: "/setting", name: "setting" },
-  { id: "other", path: "/other", name: "other" },
-  { id: "debounce", path: "/debounce", name: "debounce" },
-  { id: "login", path: "/login", name: "login" }
-]
-const activeIndex: Ref<any> = ref(null)
 const route = useRoute()
-watch(
-  () => route.name,
-  val => {
-    activeIndex.value = val
-  }
-)
+console.log(route.meta.keepAlive)
 </script>
 <style scoped lang="scss">
-.el-container {
-  width: 100%;
-  height: 100%;
-  min-width: 700px;
-  display: flex;
-}
+@import './index.scss';
 </style>
