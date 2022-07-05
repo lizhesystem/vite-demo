@@ -28,6 +28,7 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import Footer from './Footer/index.vue'
+import Header from './Header/index.vue'
 
 const route = useRoute()
 console.log(route.meta.keepAlive)
