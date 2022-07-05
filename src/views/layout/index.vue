@@ -3,8 +3,8 @@
     <el-aside></el-aside>
     <el-container>
       <el-header>
-			<Header></Header>
-			</el-header>
+        <Header />
+      </el-header>
       <el-main>
         <router-view v-slot="{ Component }">
           <transition appear name="fade-transform" mode="out-in">
@@ -19,7 +19,7 @@
       </el-main>
       <!--底部-->
       <el-footer>
-				<Footer></Footer>
+        <Footer />
       </el-footer>
     </el-container>
   </el-container>
@@ -28,7 +28,6 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import Footer from './Footer/index.vue'
-import Header from './Header/index.vue'
 
 const route = useRoute()
 console.log(route.meta.keepAlive)
