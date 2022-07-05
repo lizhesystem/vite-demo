@@ -30,6 +30,7 @@ import { useRoute } from 'vue-router'
 import Footer from './Footer/index.vue'
 import Header from './Header/index.vue'
 
+// 阿
 const route = useRoute()
 console.log(route.meta.keepAlive)
 </script>
