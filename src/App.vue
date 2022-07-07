@@ -12,7 +12,7 @@ import { reactive, ref } from 'vue'
 const config = reactive({
   autoInsertSpace: false
 })
-
+// 配置全局组件大小
 const size = ref<string>('large')
 </script>
 

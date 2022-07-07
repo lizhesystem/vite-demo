@@ -1,6 +1,8 @@
 <template>
   <el-container>
-    <el-aside></el-aside>
+    <el-aside>
+      <Menu />
+    </el-aside>
     <el-container>
       <el-header>
         <Header />
@@ -29,6 +31,7 @@
 import { useRoute } from 'vue-router'
 import Footer from './Footer/index.vue'
 import Header from './Header/index.vue'
+import Menu from './Menu/index.vue'
 
 // 阿
 const route = useRoute()

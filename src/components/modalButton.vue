@@ -1,8 +1,6 @@
 <template>
   <div>teleport瞬移</div>
-  <el-button type="primary" size="mini" @click="modalOpen = true">
-    Open full screen model!
-  </el-button>
+  <el-button type="primary" size="mini" @click="modalOpen = true"> Open full screen model! </el-button>
 
   <teleport to="body">
     <div
@@ -11,7 +9,7 @@
     >
       <div class="flex flex-col items-center justify-center bg-white w-80 h-80 p-1">
         i'm a teleported modal! (my parent is 'body')
-        <el-button type="primary" size="mini" @click="modalOpen = false"> Close </el-button>
+        <el-button type="primary" size="mini" @click="modalOpen = false"> Close</el-button>
       </div>
     </div>
   </teleport>
