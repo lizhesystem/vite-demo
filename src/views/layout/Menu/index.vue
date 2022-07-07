@@ -9,6 +9,7 @@
       text-color="#bdbdc0"
       active-text-color="#fff"
     >
+			<Logo :is-collapse="isCollapse"></Logo>
       <SubItem :menu-list="menuList" />
     </el-menu>
   </div>
@@ -20,6 +21,7 @@ import { MenuStore } from '@/store/modules/menu'
 import SubItem from '@/views/layout/Menu/components/SubItem.vue'
 import menuListJson from './json/menu.json'
 import { useRoute } from 'vue-router'
+import Logo from "@/views/layout/Menu/components/Logo.vue";
 
 const route = useRoute()
 const menuStore = MenuStore()

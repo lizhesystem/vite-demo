@@ -36,3 +36,41 @@ export function localRemove(key: string) {
 export function localClear() {
     window.localStorage.clear();
 }
+
+/**
+ * 对象深克隆
+ * @param obj 源对象
+ * @returns {obj} 克隆后的对象
+ */
+export function deepCopy<T>(obj: any): T {
+    let newObj: any;
+    try {
+        newObj = obj.push ? [] : {};
+    } catch (error) {
+        newObj = {};
+    }
+    for (let attr in obj) {
+        if (typeof obj[attr] === "object") {
+            newObj[attr] = deepCopy(obj[attr]);
+        } else {
+            newObj[attr] = obj[attr];
+        }
+    }
+    return newObj;
+}
+
+/**
+ * 递归查询当前路由所对应的tabPane
+ * @param menuList
+ * @param path
+ */
+export function getTabPane<T, U>(menuList: any[], path: U): T {
+    console.log(menuList);
+    let result: any;
+    for (let item of menuList || []) {
+        if (item.path === path) result = item;
+        const res = getTabPane(item.children, path);
+        if (res) result = res;
+    }
+    return result;
+}

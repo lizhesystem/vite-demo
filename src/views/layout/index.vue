@@ -33,8 +33,8 @@ import Footer from './Footer/index.vue'
 import Header from './Header/index.vue'
 import Menu from './Menu/index.vue'
 
-// 阿
 const route = useRoute()
+
 console.log(route.meta.keepAlive)
 </script>
 <style scoped lang="scss">
