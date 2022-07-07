@@ -31,7 +31,7 @@
     <el-button type="primary" :loading="loading" :icon="UserFilled" round @click="login(loginFormRef)">登录</el-button>
     <el-button :icon="CircleClose" round type="primary" @click="resetForm(loginFormRef)">重置</el-button>
   </div>
-   <el-button @click="submitParent">触发父组件方法</el-button>
+  <el-button @click="submitParent">触发父组件方法</el-button>
 </template>
 
 <script setup lang="ts">
@@ -53,7 +53,6 @@ const loginRules = reactive({
   username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
   password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
 })
-
 
 const loading = ref<boolean>(false)
 
@@ -101,7 +100,6 @@ const props = withDefaults(defineProps<ParentProps>(), {
     }
   }
 })
-
 
 const loginForm = reactive<LoginFrom>({
   username: props.obj.username,

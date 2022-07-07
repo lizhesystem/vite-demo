@@ -9,8 +9,7 @@
       @submitParent="submitParent"
     />
 
-     <el-button @click="consoleRef">打印子组件数据</el-button>
-
+    <el-button @click="consoleRef">打印子组件数据</el-button>
   </div>
 </template>
 
@@ -35,9 +34,9 @@ provide('provideState', {
 
 // 使用子组件数据
 const loginRef = ref<LoginFormExpose | null>(null)
-const consoleRef = ()=>{
+const consoleRef = () => {
   console.log(loginRef.value?.count)
-  loginRef.value?.consoleNumber("liutao");
+  loginRef.value?.consoleNumber('liutao')
 }
 
 // login

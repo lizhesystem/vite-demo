@@ -24,17 +24,7 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  markRaw,
-  reactive,
-  ref,
-  shallowReactive,
-  shallowRef,
-  toRaw,
-  toRef,
-  toRefs
-} from 'vue'
+import { defineComponent, markRaw, reactive, ref, shallowReactive, shallowRef, toRaw, toRef, toRefs } from 'vue'
 import HelloWorld from '../components/HelloWorld.vue'
 
 export default defineComponent({
