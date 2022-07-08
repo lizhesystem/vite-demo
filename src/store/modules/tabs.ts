@@ -47,15 +47,33 @@ export const TabsStore = defineStore({
           if (item.path === tabPath) {
             const nextTab = this.tabsMenuList[index + 1] || this.tabsMenuList[index - 1]
             if (nextTab) {
-              // this.tabsMenuValue = nextTab
-              // router.push(nextTab.path)
+              this.tabsMenuValue = nextTab.path
+              router.push(nextTab.path)
             }
           }
         })
+        this.tabsMenuList = this.tabsMenuList.filter(item => item.path !== tabPath)
       }
     },
-    async setTabsMenuValue(tabPath: string) {
-      this.tabsMenuValue = tabPath
+    async setTabsMenuValue(tabsMenuValue: string) {
+      this.tabsMenuValue = tabsMenuValue
+    },
+    async changeTabs(tabPath: string) {
+      this.tabsMenuList.forEach(item => {
+        if (item.path === tabPath) router.push(item.path)
+      })
+    },
+    async setTabsMenuList(tabMenuList: Menu.MenuOptions[]) {
+      this.tabsMenuList = tabMenuList
+    },
+    async closeMultipleTab(tabsMenuValue?: string) {
+      this.tabsMenuList = this.tabsMenuList.filter(item => {
+        return item.path === tabsMenuValue || item.path === "/home";
+      });
+    },
+    async goHome(){
+      await router.push('/home')
+      this.tabsMenuValue = '/home'
     }
   },
   persist: piniaPersist('TabsStore')

@@ -31,9 +31,9 @@ const isCollapse = computed((): boolean => menuStore.isCollapse)
 const defaultActive = computed((): string => route.path)
 const menuList = computed((): Menu.MenuOptions[] => menuStore.menuList)
 
-// onMounted(() => {
-//   listeningWindow()
-// })
+onMounted(() => {
+  listeningWindow()
+})
 const screenWidth = ref<number>(0)
 const screenHeight = ref<number>(0)
 
@@ -48,7 +48,7 @@ const listeningWindow = () => {
     })()
   }
 }
-listeningWindow()
+// listeningWindow()
 </script>
 
 <style scoped lang="scss">

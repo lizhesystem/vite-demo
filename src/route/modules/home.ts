@@ -9,7 +9,7 @@ const homeRouter: Array<RouteRecordRaw> = [
       keepAlive: true,
       requiresAuth: true,
       parentTitle: '首页',
-      title: '',
+      title: "首页",
       key: 'home'
     }
   }

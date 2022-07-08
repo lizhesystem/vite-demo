@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import errorRouter from '@/route/modules/error'
 import homeRouter from '@/route/modules/home'
+import tableRouter from "@/route/modules/table";
 
 const routes: RouteRecordRaw[] = [
   { path: '/', redirect: '/login' },
@@ -24,7 +25,7 @@ const routes: RouteRecordRaw[] = [
       key: 'layout'
     },
     redirect: { name: 'home' },
-    children: [...homeRouter]
+    children: [...homeRouter,...tableRouter]
   },
   {
     // 找不到路由重定向到404页面
