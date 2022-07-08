@@ -1,7 +1,9 @@
 import {defineConfig} from 'vite'
-import viteCompression from "vite-plugin-compression";
 import vue from '@vitejs/plugin-vue'
+import viteCompression from "vite-plugin-compression";
+import { visualizer } from "rollup-plugin-visualizer";
 import { resolve } from "path";
+
 // https://vitejs.dev/config/
 export default defineConfig({
 	resolve: {
@@ -42,6 +44,8 @@ export default defineConfig({
 			algorithm: "gzip",
 			ext: ".gz"
 		}),
+		// 查看打包体积大小
+		visualizer()
 	],
 	// build configure
 	build: {
