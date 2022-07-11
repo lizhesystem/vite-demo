@@ -1,4 +1,5 @@
 import { RouteRecordRaw } from 'vue-router'
+
 // 错误页面模块
 const errorRouter: Array<RouteRecordRaw> = [
   {
@@ -7,7 +8,8 @@ const errorRouter: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "403" */ '@/components/ErrorMessage/403.vue'),
     meta: {
       requiresAuth: true,
-      title: '403页面'
+      title: '403页面',
+      key: '403'
     }
   },
   {
@@ -16,7 +18,8 @@ const errorRouter: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "404" */ '@/components/ErrorMessage/404.vue'),
     meta: {
       requiresAuth: false,
-      title: '404页面'
+      title: '404页面',
+      key: '404'
     }
   },
   {
@@ -25,7 +28,8 @@ const errorRouter: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "500" */ '@/components/ErrorMessage/500.vue'),
     meta: {
       requiresAuth: false,
-      title: '500页面'
+      title: '500页面',
+      key: '500'
     }
   }
 ]

@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div class="footer flx-center">
     <a href="">Dome - admin</a>
   </div>
 </template>

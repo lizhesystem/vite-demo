@@ -3,6 +3,7 @@
     <el-menu
       :default-active="defaultActive"
       :collapse="isCollapse"
+			:router="true"
       :collapse-transition="false"
       :unique-opened="true"
       background-color="#20222a"

@@ -15,6 +15,10 @@ export const TabsStore = defineStore({
   }),
   getters: {},
   actions: {
+    /**
+     * 新增tab
+     * @param tabItem
+     */
     async addTabs(tabItem: Menu.MenuOptions) {
       let whiteList = ['/403', '/404', '/500', '/layout', '/login']
       if (whiteList.includes(tabItem.path)) return
@@ -40,7 +44,10 @@ export const TabsStore = defineStore({
       }
       flag = false
     },
-    // 删除tab
+    /**
+     * 删除tab
+     * @param tabPath
+     */
     async removeTabs(tabPath: string) {
       if (this.tabsMenuValue === tabPath) {
         this.tabsMenuList.forEach((item, index) => {

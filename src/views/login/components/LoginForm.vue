@@ -28,14 +28,16 @@
     </el-form-item>
   </el-form>
   <div class="login-btn">
-    <el-button type="primary" :loading="loading" :icon="UserFilled" round @click="login(loginFormRef)">登录</el-button>
-    <el-button :icon="CircleClose" round type="primary" @click="resetForm(loginFormRef)">重置</el-button>
+    <el-button type="primary" :loading="loading" size="large" :icon="UserFilled" round @click="login(loginFormRef)"
+      >登录
+    </el-button>
+    <el-button :icon="CircleClose" round size="large" @click="resetForm(loginFormRef)">重置</el-button>
   </div>
-  <el-button @click="submitParent">触发父组件方法</el-button>
+  <!--<el-button @click="submitParent">触发父组件方法</el-button>-->
 </template>
 
 <script setup lang="ts">
-import { inject, reactive, ref } from 'vue'
+import { inject, nextTick, reactive, ref } from 'vue'
 import { InjectProps, LoginFrom } from '@/views/login/types'
 import { ElForm, ElMessage } from 'element-plus'
 import { CircleClose, UserFilled } from '@element-plus/icons-vue'
@@ -76,11 +78,10 @@ const login = (formEL: FormInstance | undefined) => {
 // 重置
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
-  formEl.resetFields()
+	formEl.resetFields()
 }
 
 // 接收父组件参数（采用ts专有声明，有默认值）
-
 interface ParentProps {
   age?: string
   address?: string[]
@@ -95,8 +96,8 @@ const props = withDefaults(defineProps<ParentProps>(), {
   address: () => ['新希望国际', '伏龙小区'],
   obj: () => {
     return {
-      username: '',
-      password: ''
+      username: 'admin',
+      password: '123456'
     }
   }
 })

@@ -5,6 +5,9 @@ import './styles/css/index.css'
 import './styles/scss/reset.scss'
 import './styles/scss/common.scss'
 
+// iconfont css
+import '@/assets/iconfont/iconfont.scss'
+
 // element-ui
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
