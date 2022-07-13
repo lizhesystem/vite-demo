@@ -1,5 +1,5 @@
 <template>
-  <el-dialog v-model="dialogVisible" title="修改密码" width="30%">
+  <el-dialog v-model="dialogVisible" title="修改密码" width="500px">
     <span>this is message</span>
   </el-dialog>
 </template>

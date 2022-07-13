@@ -1,7 +1,7 @@
 <template>
   <div class="login-container w-full h-full">
     <div class="form-container">
-      <h3>this is login form!</h3>
+      <!--<h3>this is login form!</h3>-->
       <login-form
         ref="loginRef"
         :age="'20'"

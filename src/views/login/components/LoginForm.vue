@@ -41,7 +41,7 @@ import { inject, nextTick, reactive, ref } from 'vue'
 import { InjectProps, LoginFrom } from '@/views/login/types'
 import { ElForm, ElMessage } from 'element-plus'
 import { CircleClose, UserFilled } from '@element-plus/icons-vue'
-import router from '@/route/router'
+import router from '@/router/router'
 
 // inject
 const provideState = inject('provideState') as InjectProps

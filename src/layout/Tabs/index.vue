@@ -17,21 +17,7 @@
           </template>
         </el-tab-pane>
       </el-tabs>
-      <el-dropdown trigger="click">
-        <el-button size="small" type="primary">
-          <span>更多</span>
-          <el-icon class="el-icon--right">
-            <arrow-down />
-          </el-icon>
-        </el-button>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item @click.native="closeCurrentTab">关闭当前</el-dropdown-item>
-            <el-dropdown-item @click.native="closeOtherTab">关闭其他</el-dropdown-item>
-            <el-dropdown-item @click.native="closeAllTab">关闭所有</el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
+      <MoreButton/>
     </div>
   </div>
 </template>
@@ -41,6 +27,7 @@ import { TabsStore } from '@/store/modules/tabs'
 import { computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { TabsPaneContext } from 'element-plus'
+import MoreButton from "@/layout/Tabs/components/MoreButton.vue";
 
 const tabsStore = TabsStore()
 const tabsMenuValue = computed({
@@ -78,17 +65,6 @@ const tabClick = (tabItem: TabsPaneContext) => {
 
 const removeTab = (activeTabPath: string) => {
   tabsStore.removeTabs(activeTabPath)
-}
-const closeCurrentTab = () => {
-  if (tabsStore.tabsMenuValue === '/home') return
-  tabsStore.removeTabs(tabsStore.tabsMenuValue)
-}
-const closeOtherTab = () => {
-  tabsStore.closeMultipleTab(tabsStore.tabsMenuValue)
-}
-const closeAllTab = () => {
-  tabsStore.closeMultipleTab()
-  tabsStore.goHome()
 }
 </script>
 

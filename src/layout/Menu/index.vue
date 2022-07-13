@@ -1,5 +1,5 @@
 <template>
-  <div class="menu" :style="{ width: isCollapse ? '65px' : '250px' }">
+  <div class="menu" :style="{ width: isCollapse ? '65px' : '240px' }">
     <el-menu
       :default-active="defaultActive"
       :collapse="isCollapse"
@@ -19,10 +19,10 @@
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref } from 'vue'
 import { MenuStore } from '@/store/modules/menu'
-import SubItem from '@/views/layout/Menu/components/SubItem.vue'
+import SubItem from '@/layout/Menu/components/SubItem.vue'
 import menuListJson from './json/menu.json'
 import { useRoute } from 'vue-router'
-import Logo from "@/views/layout/Menu/components/Logo.vue";
+import Logo from "@/layout/Menu/components/Logo.vue";
 
 const route = useRoute()
 const menuStore = MenuStore()

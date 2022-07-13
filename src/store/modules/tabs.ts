@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import piniaPersist from '@/config/painaPersist'
-import router from '@/route/router'
+import router from '@/router/router'
 
 interface TabsState {
   tabsMenuValue: string
@@ -10,8 +10,8 @@ interface TabsState {
 export const TabsStore = defineStore({
   id: 'TabsState',
   state: (): TabsState => ({
-    tabsMenuValue: '/home',
-    tabsMenuList: [{ title: '首页', path: '/home', icon: 'home-filled', close: false }]
+    tabsMenuValue: '/home/index',
+    tabsMenuList: [{ title: '首页', path: '/home/index', icon: 'home-filled', close: false }]
   }),
   getters: {},
   actions: {
@@ -75,12 +75,12 @@ export const TabsStore = defineStore({
     },
     async closeMultipleTab(tabsMenuValue?: string) {
       this.tabsMenuList = this.tabsMenuList.filter(item => {
-        return item.path === tabsMenuValue || item.path === "/home";
+        return item.path === tabsMenuValue || item.path === "/home/index";
       });
     },
     async goHome(){
-      await router.push('/home')
-      this.tabsMenuValue = '/home'
+      await router.push('/home/index')
+      this.tabsMenuValue = '/home/index'
     }
   },
   persist: piniaPersist('TabsStore')
