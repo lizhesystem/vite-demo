@@ -74,7 +74,8 @@ const login = (formEL: FormInstance | undefined) => {
           username: loginForm.username,
           password: loginForm.password
         }
-        const { data } = await loginApi(requestLoginFrom)
+        const res = await loginApi(requestLoginFrom)
+	      console.log(res.data)
         // globalStore.setToken(data)
         ElMessage.success('登录成功！')
         await router.push({ name: 'home' })

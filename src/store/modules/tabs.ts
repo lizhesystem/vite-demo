@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import piniaPersist from '@/config/painaPersist'
 import router from '@/router/router'
 import { TabsState } from '@/store/interface'
-import { HOME_URL, TABS_WHITE_LIST } from '@/config'
+import { HOME_URL, TABS_WHITE_LIST } from '@/config/config'
 
 export const TabsStore = defineStore({
   id: 'TabsState',

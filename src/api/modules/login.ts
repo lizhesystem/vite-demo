@@ -6,5 +6,5 @@ import http from '@/api'
  * @param params
  */
 export const loginApi = (params:LoginParams) =>{
-	return http.post<LoginAPI>('/authentication',params)
+	return http.post('/authentication',params)
 }

@@ -17,6 +17,14 @@ const data: Props<string> = {
   username: 'string123'
 }
 
+interface PropsSay {
+	say<T>(value: T): T;
+}
+
+interface PropsNumber<T, U> {
+	(a: T, b: U): number;
+}
+
 console.log(data.username)
 console.log(store.token)
 </script>

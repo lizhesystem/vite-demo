@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { TabsStore } from '@/store/modules/tabs'
-import {HOME_URL} from "@/config";
+import {HOME_URL} from "@/config/config";
 
 const tabsStore = TabsStore()
 
