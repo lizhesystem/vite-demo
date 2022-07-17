@@ -1,13 +1,12 @@
 import { defineStore } from 'pinia'
-import { localGet } from '@/utils/util'
-import * as types from '@/store/mutation-type'
 import piniaPersist from '@/config/painaPersist'
+import { GlobalState } from '@/store/interface'
 
 export const GlobalStore = defineStore({
   id: 'GlobalState',
-  state: () => ({
-    token: localGet(types.ACCESS_TOKEN),
-    userInfo: localGet(types.USER_INFO),
+  state: (): GlobalState => ({
+    token: '',
+    userInfo: '',
     size: 'default'
   }),
   getters: {},

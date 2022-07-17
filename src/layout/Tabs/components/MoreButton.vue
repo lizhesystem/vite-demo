@@ -18,12 +18,13 @@
 
 <script setup lang="ts">
 import { TabsStore } from '@/store/modules/tabs'
+import {HOME_URL} from "@/config";
 
 const tabsStore = TabsStore()
 
 // Close Current
 const closeCurrentTab = () => {
-  if (tabsStore.tabsMenuValue === '/home/index') return
+  if (tabsStore.tabsMenuValue === HOME_URL) return
   tabsStore.removeTabs(tabsStore.tabsMenuValue)
 }
 

@@ -8,6 +8,9 @@ import './styles/scss/common.scss'
 // iconfont css
 import '@/assets/iconfont/iconfont.scss'
 
+// Custom directives
+import directives from '@/directives/index'
+
 // element-ui
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
@@ -24,7 +27,7 @@ const pinia = createPinia()
 pinia.use(piniaPersist)
 
 const app = createApp(App)
-app.use(ElementPlus).use(router).use(pinia).mount('#app')
+app.use(ElementPlus).use(router).use(pinia).use(directives).mount('#app')
 
 // 注册element Icons组件
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {

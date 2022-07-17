@@ -37,11 +37,16 @@
 </template>
 
 <script setup lang="ts">
-import { inject, nextTick, reactive, ref } from 'vue'
+import { inject, reactive, ref } from 'vue'
 import { InjectProps, LoginFrom } from '@/views/login/types'
 import { ElForm, ElMessage } from 'element-plus'
 import { CircleClose, UserFilled } from '@element-plus/icons-vue'
-import router from '@/router/router'
+import { loginApi } from '@/api/modules/login'
+import { useRouter } from 'vue-router'
+import { GlobalStore } from '@/store'
+
+const router = useRouter()
+const globalStore = GlobalStore()
 
 // inject
 const provideState = inject('provideState') as InjectProps
@@ -60,17 +65,22 @@ const loading = ref<boolean>(false)
 
 const login = (formEL: FormInstance | undefined) => {
   if (!formEL) return
-  formEL.validate(valid => {
+  formEL.validate(async valid => {
     if (valid) {
       loading.value = true
       console.log('submit')
-      setTimeout(() => {
+      try {
+        const requestLoginFrom: LoginFrom = {
+          username: loginForm.username,
+          password: loginForm.password
+        }
+        const { data } = await loginApi(requestLoginFrom)
+        // globalStore.setToken(data)
+        ElMessage.success('登录成功！')
+        await router.push({ name: 'home' })
+      } finally {
         loading.value = false
-        ElMessage.success('登录成功')
-        router.push({ name: 'home' })
-      }, 800)
-    } else {
-      return false
+      }
     }
   })
 }
@@ -78,7 +88,7 @@ const login = (formEL: FormInstance | undefined) => {
 // 重置
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
-	formEl.resetFields()
+  formEl.resetFields()
 }
 
 // 接收父组件参数（采用ts专有声明，有默认值）
