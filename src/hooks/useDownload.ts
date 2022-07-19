@@ -13,8 +13,8 @@ export const useDownload = async (
 	url: (params: any) => Promise<any>,
 	tempName: string,
 	params: object = {},
-	isNotify: boolean = false,
-	fileType: string = ".xlsx"
+	isNotify: boolean = true,
+	fileType: string = ".xls"
 ) => {
 	/**
 	 * 由生成的链接下载模板
@@ -48,7 +48,8 @@ export const useDownload = async (
 		// });
 		const blob = new Blob([res]);
 		// 兼容edge不支持createObjectURL方法
-		// if ("msSaveOrOpenBlob" in navigator) return window.navigator.msSaveOrOpenBlob(blob, tempName + fileType);
+		// @ts-ignore
+		if ("msSaveOrOpenBlob" in navigator) return window.navigator.msSaveOrOpenBlob(blob, tempName + fileType);
 		const blobUrl = window.URL.createObjectURL(blob);
 		download(blobUrl);
 	} catch (error) {

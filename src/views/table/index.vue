@@ -8,6 +8,12 @@
   </el-table>
 </template>
 <script setup lang="ts">
+import { useDownload } from "@/hooks/useDownload";
+import { downLoadFile } from "@/api/modules/login";
+
+const downloadFile = () => {
+	useDownload(downLoadFile, "系统日志");
+};
 const tableData = [
   {
     date: "2016-05-03",
