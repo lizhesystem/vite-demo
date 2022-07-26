@@ -2,8 +2,9 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } f
 import { GlobalStore } from '@/store'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
-import { checkStatus } from '@/api/util/checkStatus'
+import { checkStatus } from '@/api/helper/checkStatus'
 import { ResultData } from '@/api/interface'
+import {showFullScreenLoading, tryHideFullScreenLoading} from "@/api/config/serviceLoading";
 
 const globalStore = GlobalStore()
 const router = useRouter()
@@ -27,8 +28,9 @@ class RequestHttp {
      */
     this.service.interceptors.request.use(
       (config: AxiosRequestConfig) => {
+        showFullScreenLoading()
         const token: string = globalStore.token
-        return { ...config, headers: { 'accessToken': token } }
+        return { ...config, headers: { accessToken: token } }
       },
       (error: AxiosError) => {
         return Promise.reject(error)
@@ -41,12 +43,12 @@ class RequestHttp {
     this.service.interceptors.response.use(
       (response: AxiosResponse) => {
         const { data } = response
-        if (data.code === 200) {
-          return data
-        } else {
+        tryHideFullScreenLoading()
+        if (data.code && data.code !== 200) {
           ElMessage.error(data.message)
           return Promise.reject(data)
         }
+        return data
       },
       async (error: AxiosError) => {
         const { response } = error

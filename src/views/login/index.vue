@@ -49,7 +49,7 @@ const submitParent = (LoginForm: LoginFrom) => {
 
 const loginForm = reactive<LoginFrom>({
   username: 'admin',
-  password: 'abc123'
+  password: '123456'
 })
 
 // const clickParent = (number: number) => {

@@ -27,7 +27,7 @@ export default defineConfig({
 		// 代理跨域
 		proxy: {
 			"/api": {
-				target: "http://192.168.31.15:8889",
+				target: "http://127.0.0.1:8889",
 				// changeOrigin 会影响到请求的Origin,
 				// 默认情况下，代理时会保留主机头的来源，可以将 changeOrigin 设置为 true , 如果设置成true, 发送请求头中host会设置成target。
 				changeOrigin: true,

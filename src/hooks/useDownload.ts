@@ -14,7 +14,7 @@ export const useDownload = async (
 	tempName: string,
 	params: object = {},
 	isNotify: boolean = true,
-	fileType: string = ".xls"
+	fileType: string = ".png"
 ) => {
 	/**
 	 * 由生成的链接下载模板

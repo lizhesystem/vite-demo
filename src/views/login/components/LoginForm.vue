@@ -108,7 +108,7 @@ const props = withDefaults(defineProps<ParentProps>(), {
   obj: () => {
     return {
       username: 'admin',
-      password: '123456'
+      password: '111111'
     }
   }
 })

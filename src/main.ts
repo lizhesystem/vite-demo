@@ -4,9 +4,10 @@ import App from './App.vue'
 import './styles/css/index.css'
 import './styles/scss/reset.scss'
 import './styles/scss/common.scss'
-
+import '@/styles/scss/element.scss'
 // iconfont css
 import '@/assets/iconfont/iconfont.scss'
+
 
 // Custom directives
 import directives from '@/directives/index'
