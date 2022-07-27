@@ -12,10 +12,11 @@
         <router-view v-slot="{ Component }">
           <transition appear name="fade-transform" mode="out-in">
             <section class="main-box">
-              <keep-alive v-if="route.meta.keepAlive">
-                <component :is="Component" :key="route.path"></component>
-              </keep-alive>
-              <component v-else :is="Component" :key="route.path"></component>
+							<!--先去掉keepalive，会影响到热加载-->
+              <!--<keep-alive v-if="route.meta.keepAlive">-->
+              <!--  <component :is="Component" :key="route.path"></component>-->
+              <!--</keep-alive>-->
+              <component :is="Component" :key="route.path"></component>
             </section>
           </transition>
         </router-view>

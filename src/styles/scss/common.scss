@@ -53,6 +53,15 @@
   position: absolute;
 }
 
+/* 清除浮动 */
+.clearfix::after {
+  content: "";
+  display: block;
+  height: 0px;
+  clear: both;
+  overflow: hidden;
+}
+
 /* 滚动条 */
 // 定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸
 ::-webkit-scrollbar {

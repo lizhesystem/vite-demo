@@ -4,10 +4,15 @@ import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
 import { checkStatus } from '@/api/helper/checkStatus'
 import { ResultData } from '@/api/interface'
-import {showFullScreenLoading, tryHideFullScreenLoading} from "@/api/config/serviceLoading";
+import { showFullScreenLoading, tryHideFullScreenLoading } from '@/api/config/serviceLoading'
+import { AxiosCanceler } from '@/api/helper/axiosCancel'
+import { isObject } from '@/utils/is'
 
 const globalStore = GlobalStore()
 const router = useRouter()
+
+// 请求取消对象
+const axiosCanceler = new AxiosCanceler()
 
 const config = {
   // 可以这样取环境变量
@@ -28,6 +33,7 @@ class RequestHttp {
      */
     this.service.interceptors.request.use(
       (config: AxiosRequestConfig) => {
+        axiosCanceler.addPending(config)
         showFullScreenLoading()
         const token: string = globalStore.token
         return { ...config, headers: { accessToken: token } }
@@ -43,6 +49,7 @@ class RequestHttp {
     this.service.interceptors.response.use(
       (response: AxiosResponse) => {
         const { data } = response
+        axiosCanceler.removePending(config)
         tryHideFullScreenLoading()
         if (data.code && data.code !== 200) {
           ElMessage.error(data.message)
@@ -68,13 +75,9 @@ class RequestHttp {
     return this.service.post(url, { ...params, ..._object })
   }
 
-  // put<T>(url: string, params?: object, _object = {}): Promise<ResultData<T>> {
-  //   return this.service.put(url, { params, ..._object })
-  // }
-  //
-  // delete<T>(url: string, params?: object, _object = {}): Promise<ResultData<T>> {
-  //   return this.service.delete(url, { params, ..._object })
-  // }
+  delete<T>(url: string, params?: object, _object = {}): Promise<ResultData<T>> {
+    return this.service.delete(url, { params, ..._object })
+  }
 }
 
 export default new RequestHttp(config)

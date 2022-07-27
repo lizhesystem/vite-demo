@@ -20,6 +20,7 @@ export default defineConfig({
 		}
 	},
 	server:{
+		hmr:true,
 		host:'0.0.0.0',
 		port: 3301, // 服务器端口号
 		// https: false, // is Https
